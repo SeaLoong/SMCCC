@@ -26,32 +26,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         smccc.cpp \
-    auth/auth.cpp \
-    auth/yggdrasil.cpp \
-    json/json.cpp \
-    json/json_assets.cpp \
-    json/json_downloads.cpp \
-    json/json_inheritsfrom.cpp \
-    json/json_libraries.cpp \
-    json/json_natives.cpp \
-    core.cpp \
-    net/httprequest.cpp \
-    net/net.cpp
+    auth/smcccauth.cpp \
+    auth/smcccyggdrasil.cpp \
+    json/smcccjsonassets.cpp \
+    json/smcccjsondownloads.cpp \
+    json/smcccjson.cpp \
+    json/smcccjsonlibraries.cpp \
+    json/smcccjsonnatives.cpp \
+    json/smcccjsoninheritsfrom.cpp \
+    net/smccchttprequest.cpp \
+    net/smcccnet.cpp
 
 HEADERS += \
         smccc.h \
         smccc_global.h \
-    auth/auth.h \
-    auth/yggdrasil.h \
-    json/json.h \
-    json/json_assets.h \
-    json/json_downloads.h \
-    json/json_inheritsfrom.h \
-    json/json_libraries.h \
-    json/json_natives.h \
-    core.h \
-    net/httprequest.h \
-    net/net.h
+    auth/smcccauth.h \
+    auth/smcccyggdrasil.h \
+    json/smcccjsonassets.h \
+    json/smcccjsondownloads.h \
+    json/smcccjson.h \
+    json/smcccjsonlibraries.h \
+    json/smcccjsonnatives.h \
+    json/smcccjsoninheritsfrom.h \
+    net/smccchttprequest.h \
+    net/smcccnet.h
 
 unix {
     target.path = /usr/lib
