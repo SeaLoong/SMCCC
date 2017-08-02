@@ -26,6 +26,11 @@
 - 版本隔离
 - 其它验证方式的支持
 
+## 已编译好的库下载
+[GitHub下载源](https://github.com/SeaLoong/SMCCC/raw/master/SMCCC.zip)
+[百度网盘](http://pan.baidu.com/s/1sliAvu9)
+
+
 ## 如何使用
 
 - 方法1.将Branch切换到demo，有示例代码
