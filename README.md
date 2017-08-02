@@ -35,14 +35,19 @@
 
 2. 将SMCCC库添加到.pro文件中
 
+	
 
 	LIBS += -L$$PWD/lib/ -lsmccc
 	INCLUDEPATH += $$PWD/include
 	DEPENDPATH += $$PWD/include
 
+	
 
-3. 主程序中使用所示代
+3. 主程序中使用所示代码
 
+	
+
+	
 	...
 	#include "smccc.h"
 	int main(){
@@ -55,6 +60,8 @@
 		qDebug()<<smccc->getLaunchArgsString();//或者smccc->getLaunchArgsStringList();
 		...
 	}
+	
+
 	
 
 getLaunchArgsString()返回QString类型的启动参数，之后使用QProcess等启动javaw.exe带上此参数即可
