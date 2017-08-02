@@ -33,14 +33,14 @@
 示例：
 1. 在.pro文件中加入 Qt += network 确保网络模块启用
 
-2. 将SMCCC库添加到.pro文件中\<br>
+2. 将SMCCC库添加到.pro文件中<br>
 
     LIBS += -L$$PWD/lib/ -lsmccc
     INCLUDEPATH += $$PWD/include
     DEPENDPATH += $$PWD/include
 
 
-3. 主程序中使用所示代码\<br>
+3. 主程序中使用所示代码<br>
 
     ...
     #include "smccc.h"
@@ -56,7 +56,7 @@
     }
 
 
-getLaunchArgsString()返回QString类型的启动参数，之后使用QProcess等启动javaw.exe带上此参数即可\<br>
+getLaunchArgsString()返回QString类型的启动参数，之后使用QProcess等启动javaw.exe带上此参数即可<br>
 
 - 方法3.将SMCCC库源代码直接加入到工程中使用
 
