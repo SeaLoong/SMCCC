@@ -37,11 +37,14 @@
 
 例：
 	LIBS += -L$$PWD/lib/ -lsmccc
+	
 	INCLUDEPATH += $$PWD/include
+	
 	DEPENDPATH += $$PWD/include
 
 
-3. 主程序中使用所示代码
+3. 主程序中使用所示代
+
 	
 	...
 	#include "smccc.h"
@@ -59,6 +62,7 @@
 	}
 	
 	
+
 getLaunchArgsString()返回QString类型的启动参数，之后使用QProcess等启动javaw.exe带上此参数即可
 
 - 方法3.将SMCCC库源代码直接加入到工程中使用
