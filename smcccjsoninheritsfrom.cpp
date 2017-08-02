@@ -18,12 +18,14 @@ bool SMCCCJsonInheritsFrom::process(SMCCCJson *Json){
     QJsonArray _libraries = inheritsFromObj.value("libraries").toArray();
     QString _mainClass = inheritsFromObj.value("mainClass").toString();
     QString _minecraftArguments = inheritsFromObj.value("minecraftArguments").toString();
+    QString _type = inheritsFromObj.value("type").toString();
     if(Json->_assetIndex.isEmpty())Json->_assetIndex = _assetIndex;
     if(Json->_assets.isEmpty())Json->_assets = _assets;
     if(Json->_downloads.isEmpty())Json->_downloads = _downloads;
     if(Json->_id.isEmpty())Json->_id = _id;
     if(Json->_mainClass.isEmpty())Json->_mainClass = _mainClass;
     if(Json->_minecraftArguments.isEmpty())Json->_minecraftArguments = _minecraftArguments;
+    if(Json->_type.isEmpty())Json->_type = _type;
     foreach (QJsonValue v, _libraries) {
         Json->_libraries.append(v);
     }

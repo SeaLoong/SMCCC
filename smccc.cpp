@@ -1,9 +1,15 @@
 #include "smccc.h"
 
-SMCCC::SMCCC(){}
+SMCCC::SMCCC(){
+    _args_Xmx = 1024,_args_width = 854,_args_height = 480,_args_fullscreen = false;
+    _Json = new SMCCCJson;
+    _Auth = new SMCCCAuth;
+}
 
 SMCCC::SMCCC(const QString &version,const QString &dotminecraftdirpath){
-    _Json->Version = version,_Json->DotMinecraftDirPath = dotminecraftdirpath;
+    _args_Xmx = 1024,_args_width = 854,_args_height = 480,_args_fullscreen = false;
+    _Json = new SMCCCJson(version,dotminecraftdirpath);
+    _Auth = new SMCCCAuth;
 }
 
 void SMCCC::setAssetsCheck(bool assetscheck){
@@ -42,8 +48,8 @@ void SMCCC::setLibrariesDirPath(const QString &librariesdirpath){
     _Json->LibrariesDirPath = librariesdirpath;
 }
 
-void SMCCC::setVersionsDirPath(const QString &versiondirpath){
-    _Json->VersionsDirPath = versiondirpath;
+void SMCCC::setVersionsDirPath(const QString &versionsdirpath){
+    _Json->VersionsDirPath = versionsdirpath;
 }
 
 void SMCCC::setNativesDirPath(const QString &nativesdirpath){
@@ -101,11 +107,11 @@ void SMCCC::setArgs_AdditionArgsMc(const QString &additionArgs){
     _args_additionArgsMc = additionArgs;
 }
 
-QString SMCCC::getArgsString(){
+QString SMCCC::getLaunchArgsString(){
     return ArgsString;
 }
 
-QStringList SMCCC::getArgsStringList(){
+QStringList SMCCC::getLaunchArgsStringList(){
     return ArgsStringList;
 }
 
@@ -133,6 +139,7 @@ int SMCCC::processLaunchArgs(){
         _args_minecraftArguments.replace("${auth_player_name}",_Auth->get_auth_player_name());
         _args_minecraftArguments.replace("${auth_uuid}",_Auth->get_auth_uuid());
         _args_minecraftArguments.replace("${user_type}",_Auth->get_user_type());
+        if(_args_versionType.isEmpty())_args_versionType = _Json->_type;
         _args_minecraftArguments.replace("${version_type}",_args_versionType);
         //参数处理
         ArgsString.append("-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump ");

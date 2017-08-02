@@ -1,13 +1,26 @@
 #include "smcccjson.h"
 
-SMCCCJson::SMCCCJson(){}
+SMCCCJson::SMCCCJson(){
+    Arch = "32",OS = "windows",AssetsCheck = true,FileCheck = true,MergeInheritsFrom = true,_Step = 0;
+    _JsonAssets = new SMCCCJsonAssets;
+    _JsonDownloads = new SMCCCJsonDownloads;
+    _JsonInheritsFrom = new SMCCCJsonInheritsFrom;
+    _JsonLibraries = new SMCCCJsonLibraries;
+    _JsonNatives = new SMCCCJsonNatives;
+}
 
 SMCCCJson::SMCCCJson(const QString &version,const QString &dotminecraftdirpath){
+    Arch = "32",OS = "windows",AssetsCheck = true,FileCheck = true,MergeInheritsFrom = true,_Step = 0;
+    _JsonAssets = new SMCCCJsonAssets;
+    _JsonDownloads = new SMCCCJsonDownloads;
+    _JsonInheritsFrom = new SMCCCJsonInheritsFrom;
+    _JsonLibraries = new SMCCCJsonLibraries;
+    _JsonNatives = new SMCCCJsonNatives;
     Version = version,DotMinecraftDirPath = dotminecraftdirpath;
 }
 
 int SMCCCJson::process(){//_Step表示启动第几步，减少启动需要下载时再次启动的时间，0~4共5步
-    if(DotMinecraftDirPath.isEmpty())return -1;
+    if(DotMinecraftDirPath.isEmpty() || Version.isEmpty())return -1;
     if(AssetsDirPath.isEmpty())AssetsDirPath = DotMinecraftDirPath + "/assets";
     if(LibrariesDirPath.isEmpty())LibrariesDirPath = DotMinecraftDirPath + "/libraries/";
     if(VersionsDirPath.isEmpty())VersionsDirPath = DotMinecraftDirPath + "/versions";
@@ -31,6 +44,7 @@ int SMCCCJson::process(){//_Step表示启动第几步，减少启动需要下载
         _minecraftArguments = _JsonObj.value("minecraftArguments").toString();
         _inheritsFrom = _JsonObj.value("inheritsFrom").toString();
         _jar = _JsonObj.value("jar").toString();
+        _type = _JsonObj.value("type").toString();
         if(JarFilePath.isEmpty())JarFilePath = VersionsDirPath + "/" + Version + "/" + _id + ".jar";
         if(!_jar.isEmpty() && !isFileExist(JarFilePath))JarFilePath = VersionsDirPath + "/" + _jar + "/" + _jar + ".jar";
         _Step = 1;

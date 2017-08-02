@@ -23,7 +23,7 @@ public:
     SMCCCJson(const QString &version,const QString &dotminecraftdirpath);
     int process();
     /*返回值：
-     * -1:未设置游戏目录/Json文件路径等,
+     * -1:未设置DotMinecraftDirPath或Version,
      * 0:OK,
      * 1:Download,
      * 2:JsonFileNotFound,
@@ -32,15 +32,13 @@ public:
      * 5:JsonError
     */
 
-    bool AssetsCheck = true;
-    bool FileCheck = true;
-    bool MergeInheritsFrom = true;
+    bool AssetsCheck,FileCheck,MergeInheritsFrom;
 
-    QString Arch = "32",OS = "windows";
+    QString Arch,OS;
     QString Version,DotMinecraftDirPath,AssetsDirPath,LibrariesDirPath,VersionsDirPath,NativesDirPath,JarFilePath;
 
     QLinkedList<SMCCCDownloadInfo> DownloadInfoList;
-    int _Step = 0;
+    int _Step;
     QString _args_cp;
     QJsonObject _JsonObj;
     QJsonObject _assetIndex;
@@ -52,11 +50,12 @@ public:
     QString _minecraftArguments;
     QString _inheritsFrom;
     QString _jar;
-    SMCCCJsonAssets *_JsonAssets = new SMCCCJsonAssets;
-    SMCCCJsonDownloads *_JsonDownloads = new SMCCCJsonDownloads;
-    SMCCCJsonInheritsFrom *_JsonInheritsFrom = new SMCCCJsonInheritsFrom;
-    SMCCCJsonLibraries *_JsonLibraries = new SMCCCJsonLibraries;
-    SMCCCJsonNatives *_JsonNatives = new SMCCCJsonNatives;
+    QString _type;
+    SMCCCJsonAssets *_JsonAssets;
+    SMCCCJsonDownloads *_JsonDownloads;
+    SMCCCJsonInheritsFrom *_JsonInheritsFrom;
+    SMCCCJsonLibraries *_JsonLibraries;
+    SMCCCJsonNatives *_JsonNatives;
     bool isFileExist(const QString &filePath);
     bool isDirExist(const QString &dirPath);
     bool checkFileSize(const QString &filePath,int size);
