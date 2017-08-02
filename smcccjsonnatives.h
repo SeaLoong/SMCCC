@@ -2,9 +2,9 @@
 #define SMCCCJSONNATIVES_H
 
 #include <QMap>
-#include "json/smcccjson.h"
 #include "quazip/JlCompress.h"
 
+class SMCCCJson;
 class SMCCCJsonNatives
 {
 public:

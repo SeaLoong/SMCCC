@@ -12,7 +12,7 @@ public:
     int httpGet(const QString &url, QByteArray &retdata, int timeOut = 12000);
     int httpGet(const QString &url, QByteArray &retdata, const QMap<QNetworkRequest::KnownHeaders,QString> &headerlist, int timeOut = 12000);
     int httpPost(const QString &url, QByteArray &retdata, const QByteArray &postdata, int timeOut = 12000);
-    int httpGet(const QString &url, QByteArray &retdata, const QByteArray &postdata, const QMap<QNetworkRequest::KnownHeaders,QString> &headerlist, int timeOut = 12000);
+    int httpPost(const QString &url, QByteArray &retdata, const QByteArray &postdata, const QMap<QNetworkRequest::KnownHeaders,QString> &headerlist, int timeOut = 12000);
 };
 
 #endif // SMCCCNET_H

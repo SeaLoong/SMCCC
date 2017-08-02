@@ -1,9 +1,14 @@
 #include "smcccjsonlibraries.h"
 
+#include "smcccjson.h"
+#include "smcccjsonnatives.h"
+
+SMCCCJsonLibraries::SMCCCJsonLibraries(){}
+
 int SMCCCJsonLibraries::process(SMCCCJson *Json, SMCCCJsonNatives *JsonNatives){
     int ret = 0;
     //检查libraries
-    foreach (QJsonValue _value, _libraries) {
+    foreach (QJsonValue _value, Json->_libraries) {
         QJsonObject _object = _value.toObject();
         //判断rules
         QJsonArray rules = _object.value("rules").toArray();
@@ -31,7 +36,7 @@ int SMCCCJsonLibraries::process(SMCCCJson *Json, SMCCCJsonNatives *JsonNatives){
         Json->_args_cp.append(_filePath + ";");
         if(!Json->isFileExist(_filePath) || (Json->FileCheck && (!Json->checkFileSize(_filePath,_size) || !Json->checkFileSHA1(_filePath,_sha1)))){
             if(QUrl(_url).isValid() && _url.toLower().startsWith("http")){
-                SMCCC::DownloadInfo info(_filePath,_url,_sha1,_size);
+                SMCCCDownloadInfo info(_filePath,_url,_sha1,_size);
                 Json->DownloadInfoList.append(info);
                 ret = 1;
             }else{
@@ -75,7 +80,7 @@ void SMCCCJsonLibraries::getDownloadsInfo(const QJsonObject &jsonobj, const QStr
     size = _object.value("size").toInt();
 }
 
-QString SMCCCJson::getFilePath(const QString &name,const QString &native_string){
+QString SMCCCJsonLibraries::getFilePath(const QString &name,const QString &native_string){
     QString temp = name;//<package>:<name>:<version>
     QString _package,_name,_version;
     int _p1 = temp.indexOf(":");

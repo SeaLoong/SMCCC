@@ -1,5 +1,9 @@
 #include "smcccjsonassets.h"
 
+#include "smcccjson.h"
+
+SMCCCJsonAssets::SMCCCJsonAssets(){}
+
 bool SMCCCJsonAssets::processIndex(SMCCCJson *Json){//false:需要下载
     assetIndex_id = Json->_assetIndex.value("id").toString();
     assetIndex_sha1 = Json->_assetIndex.value("sha1").toString();
@@ -9,7 +13,7 @@ bool SMCCCJsonAssets::processIndex(SMCCCJson *Json){//false:需要下载
     QString AssetIndexFilePath = Json->AssetsDirPath + "/indexes/" + assetIndex_id + ".json";
     //检查assets\indexes\[version].json文件
     if(!Json->isFileExist(AssetIndexFilePath) || (Json->FileCheck && (!Json->checkFileSize(AssetIndexFilePath,assetIndex_size) || !Json->checkFileSHA1(AssetIndexFilePath,assetIndex_sha1)))){
-        SMCCC::DownloadInfo info(AssetIndexFilePath,assetIndex_url,assetIndex_sha1,assetIndex_size);
+        SMCCCDownloadInfo info(AssetIndexFilePath,assetIndex_url,assetIndex_sha1,assetIndex_size);
         Json->DownloadInfoList.append(info);
         return false;
     }
@@ -45,7 +49,7 @@ bool SMCCCJsonAssets::process(SMCCCJson *Json){//false:需要下载
         _filePath = _pathRoot + "/" + _fileName;
         QString _url = "http://resources.download.minecraft.net/" + _hash.left(2) + "/" + _hash;
         if(!Json->isFileExist(_filePath) || (Json->FileCheck && (!Json->checkFileSize(_filePath,_size) || !Json->checkFileSHA1(_filePath,_hash)))){
-            SMCCC::DownloadInfo info(_filePath,_url,_hash,_size);
+            SMCCCDownloadInfo info(_filePath,_url,_hash,_size);
             Json->DownloadInfoList.append(info);
             ret = false;
         }

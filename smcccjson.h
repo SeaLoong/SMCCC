@@ -9,12 +9,12 @@
 #include <QUrl>
 #include <QLinkedList>
 #include <QCryptographicHash>
+#include "smcccdownloadinfo.h"
 #include "smcccjsonassets.h"
 #include "smcccjsondownloads.h"
 #include "smcccjsoninheritsfrom.h"
 #include "smcccjsonlibraries.h"
 #include "smcccjsonnatives.h"
-#include "smccc.h"
 
 class SMCCCJson
 {
@@ -29,17 +29,17 @@ public:
      * 2:JsonFileNotFound,
      * 3:InheritsFromJsonFileNotFound
      * 4:LibrariesFileNotFound
-     * 5:Error
+     * 5:JsonError
     */
 
     bool AssetsCheck = true;
     bool FileCheck = true;
     bool MergeInheritsFrom = true;
 
-    QLinkedList<SMCCC::DownloadInfo> DownloadInfoList;
     QString Arch = "32",OS = "windows";
     QString Version,DotMinecraftDirPath,AssetsDirPath,LibrariesDirPath,VersionsDirPath,NativesDirPath,JarFilePath;
 
+    QLinkedList<SMCCCDownloadInfo> DownloadInfoList;
     int _Step = 0;
     QString _args_cp;
     QJsonObject _JsonObj;
@@ -52,11 +52,11 @@ public:
     QString _minecraftArguments;
     QString _inheritsFrom;
     QString _jar;
-    SMCCCJsonAssets _JsonAssets;
-    SMCCCJsonDownloads _JsonDownloads;
-    SMCCCJsonInheritsFrom _JsonInheritsFrom;
-    SMCCCJsonLibraries _JsonLibraries;
-    SMCCCJsonNatives _JsonNatives;
+    SMCCCJsonAssets *_JsonAssets = new SMCCCJsonAssets;
+    SMCCCJsonDownloads *_JsonDownloads = new SMCCCJsonDownloads;
+    SMCCCJsonInheritsFrom *_JsonInheritsFrom = new SMCCCJsonInheritsFrom;
+    SMCCCJsonLibraries *_JsonLibraries = new SMCCCJsonLibraries;
+    SMCCCJsonNatives *_JsonNatives = new SMCCCJsonNatives;
     bool isFileExist(const QString &filePath);
     bool isDirExist(const QString &dirPath);
     bool checkFileSize(const QString &filePath,int size);

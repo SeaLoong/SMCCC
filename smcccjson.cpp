@@ -1,5 +1,7 @@
 #include "smcccjson.h"
 
+SMCCCJson::SMCCCJson(){}
+
 SMCCCJson::SMCCCJson(const QString &version,const QString &dotminecraftdirpath){
     Version = version,DotMinecraftDirPath = dotminecraftdirpath;
 }
@@ -36,7 +38,7 @@ int SMCCCJson::process(){//_Step表示启动第几步，减少启动需要下载
     if(_Step == 1){
         //处理inheritsFrom
         if(!_inheritsFrom.isEmpty()){
-            if(_JsonInheritsFrom.process(this)){
+            if(_JsonInheritsFrom->process(this)){
                 if(MergeInheritsFrom){
                     _JsonObj.insert("assetIndex",_assetIndex);
                     _JsonObj.insert("assets",_assets);
@@ -63,19 +65,19 @@ int SMCCCJson::process(){//_Step表示启动第几步，减少启动需要下载
         _Step = 2;
     }
     if(_Step == 2){
-        bool ret1 = _JsonDownloads.process(this);//处理downloads和
-        int ret2 = _JsonLibraries.process(this,&_JsonNatives);//处理ibraries
+        bool ret1 = _JsonDownloads->process(this);//处理downloads和
+        int ret2 = _JsonLibraries->process(this,_JsonNatives);//处理ibraries
         bool ret3 = false;
-        if(AssetsCheck)ret3 = _JsonAssets.processIndex(this);
+        if(AssetsCheck)ret3 = _JsonAssets->processIndex(this);
         if(ret2 == 2)return 4;
         if(!ret1 || (AssetsCheck && !ret3) || ret2 == 1)return 1;
-        _JsonNatives.process(this);//解压natives文件
+        _JsonNatives->process(this);//解压natives文件
         _Step = 3;
     }
     if(_Step == 3){
         //处理assetIndex
         if(AssetsCheck){
-            bool ret = _JsonAssets.process(this);
+            bool ret = _JsonAssets->process(this);
             if(!ret)return 1;
         }
         _Step = 4;
@@ -120,22 +122,4 @@ bool SMCCCJson::checkFileSHA1(const QString &filePath, const QString &sha1){
     file.close();
     QString _SHA1 = QCryptographicHash::hash(data,QCryptographicHash::Sha1).toHex().toLower();
     return _SHA1 == sha1.toLower();
-}
-
-bool SMCCCJson::removeDir(const QString &path){
-    if (path.isEmpty())return false;
-    QDir dir(path);
-    if(!dir.exists()){
-        return true;
-    }
-    dir.setFilter(QDir::AllEntries | QDir::NoDotAndDotDot);//设置过滤
-    QFileInfoList fileList = dir.entryInfoList();//获取所有的文件信息
-    foreach (QFileInfo file, fileList){//遍历文件信息
-        if (file.isFile()){//是文件，删除
-            QFile::remove(file.absoluteFilePath());
-        }else{//递归删除
-            removeDir(file.absoluteFilePath());
-        }
-    }
-    return dir.rmdir(dir.absolutePath());//删除文件夹
 }

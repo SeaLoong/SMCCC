@@ -1,5 +1,7 @@
 #include "smcccauth.h"
 
+SMCCCAuth::SMCCCAuth(){}
+
 void SMCCCAuth::setAuthMethod(int index){
     if(index > 1)index = 0;
     AuthMethod = index;
@@ -11,10 +13,6 @@ void SMCCCAuth::set_username(const QString &username){
 
 void SMCCCAuth::set_password(const QString &password){
     _password = password;
-}
-
-void SMCCCAuth::set_uuid(const QString &uuid){
-    _uuid = uuid;
 }
 
 void SMCCCAuth::set_accessToken(const QString &accessToken){
@@ -56,7 +54,7 @@ bool SMCCCAuth::auth(){
         _user_type = "legacy";
         return true;
     case 1:
-        Yggdrasil _Yggdrasil;
+        SMCCCYggdrasil _Yggdrasil;
         _Yggdrasil.username = _username;
         _Yggdrasil.password = _password;
         _Yggdrasil.accessToken = _accessToken;

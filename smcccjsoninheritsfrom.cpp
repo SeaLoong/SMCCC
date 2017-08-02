@@ -1,5 +1,9 @@
 #include "smcccjsoninheritsfrom.h"
 
+#include "smcccjson.h"
+
+SMCCCJsonInheritsFrom::SMCCCJsonInheritsFrom(){}
+
 bool SMCCCJsonInheritsFrom::process(SMCCCJson *Json){
     QString inheritsFromFilePath = Json->VersionsDirPath + "/" + Json->_inheritsFrom + "/" + Json->_inheritsFrom + ".json";
     if (!Json->isFileExist(inheritsFromFilePath))return false;

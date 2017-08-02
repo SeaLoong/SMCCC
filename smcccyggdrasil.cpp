@@ -1,5 +1,7 @@
 #include "smcccyggdrasil.h"
 
+SMCCCYggdrasil::SMCCCYggdrasil(){}
+
 bool SMCCCYggdrasil::Authenticate(){
     //有关以下内容的解释自行查阅 http://wiki.vg/Authentication#Authenticate
     QJsonObject payload,agent;

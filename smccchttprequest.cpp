@@ -1,4 +1,4 @@
-#include "net/smccchttprequest.h"
+#include "smccchttprequest.h"
 
 SMCCCHttpRequest::SMCCCHttpRequest(QObject *parent) : QObject(parent)
 {

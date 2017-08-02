@@ -4,7 +4,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include "net/smcccnet.h"
+#include "smcccnet.h"
 
 class SMCCCYggdrasil
 {

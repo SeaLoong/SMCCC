@@ -1,8 +1,9 @@
 #ifndef SMCCCJSONASSETS_H
 #define SMCCCJSONASSETS_H
 
-#include "smcccjson.h"
+#include <QJsonObject>
 
+class SMCCCJson;
 class SMCCCJsonAssets
 {
 public:

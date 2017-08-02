@@ -1,8 +1,7 @@
 #ifndef SMCCCJSONDOWNLOADS_H
 #define SMCCCJSONDOWNLOADS_H
 
-#include "json/smcccjson.h"
-
+class SMCCCJson;
 class SMCCCJsonDownloads
 {
 public:

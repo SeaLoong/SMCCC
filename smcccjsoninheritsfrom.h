@@ -1,8 +1,7 @@
 #ifndef SMCCCJSONINHERITSFROM_H
 #define SMCCCJSONINHERITSFROM_H
 
-#include "json/smcccjson.h"
-
+class SMCCCJson;
 class SMCCCJsonInheritsFrom
 {
 public:

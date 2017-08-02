@@ -5,13 +5,14 @@
 #-------------------------------------------------
 
 QT       += network
-
 QT       -= gui
 
+CONFIG += c++11
 TARGET = SMCCC
 TEMPLATE = lib
 
 DEFINES += SMCCC_LIBRARY
+DEFINES += QUAZIP_BUILD
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -26,32 +27,72 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         smccc.cpp \
-    auth/smcccauth.cpp \
-    auth/smcccyggdrasil.cpp \
-    json/smcccjsonassets.cpp \
-    json/smcccjsondownloads.cpp \
-    json/smcccjson.cpp \
-    json/smcccjsonlibraries.cpp \
-    json/smcccjsonnatives.cpp \
-    json/smcccjsoninheritsfrom.cpp \
-    net/smccchttprequest.cpp \
-    net/smcccnet.cpp
+    smcccauth.cpp \
+    smcccyggdrasil.cpp \
+    smcccjsonassets.cpp \
+    smcccjsondownloads.cpp \
+    smcccjson.cpp \
+    smcccjsonlibraries.cpp \
+    smcccjsonnatives.cpp \
+    smcccjsoninheritsfrom.cpp \
+    smccchttprequest.cpp \
+    smcccnet.cpp \
+    smcccdownloadinfo.cpp \
+    quazip/JlCompress.cpp \
+    quazip/qioapi.cpp \
+    quazip/quaadler32.cpp \
+    quazip/quacrc32.cpp \
+    quazip/quagzipfile.cpp \
+    quazip/quaziodevice.cpp \
+    quazip/quazip.cpp \
+    quazip/quazipdir.cpp \
+    quazip/quazipfile.cpp \
+    quazip/quazipfileinfo.cpp \
+    quazip/quazipnewinfo.cpp \
+    quazip/unzip.c \
+    quazip/zip.c
 
 HEADERS += \
         smccc.h \
         smccc_global.h \
-    auth/smcccauth.h \
-    auth/smcccyggdrasil.h \
-    json/smcccjsonassets.h \
-    json/smcccjsondownloads.h \
-    json/smcccjson.h \
-    json/smcccjsonlibraries.h \
-    json/smcccjsonnatives.h \
-    json/smcccjsoninheritsfrom.h \
-    net/smccchttprequest.h \
-    net/smcccnet.h
+    smcccauth.h \
+    smcccyggdrasil.h \
+    smcccjsonassets.h \
+    smcccjsondownloads.h \
+    smcccjson.h \
+    smcccjsonlibraries.h \
+    smcccjsonnatives.h \
+    smcccjsoninheritsfrom.h \
+    smccchttprequest.h \
+    smcccnet.h \
+    smcccdownloadinfo.h \
+    quazip/crypt.h \
+    quazip/ioapi.h \
+    quazip/JlCompress.h \
+    quazip/quaadler32.h \
+    quazip/quachecksum32.h \
+    quazip/quacrc32.h \
+    quazip/quagzipfile.h \
+    quazip/quaziodevice.h \
+    quazip/quazip.h \
+    quazip/quazip_global.h \
+    quazip/quazipdir.h \
+    quazip/quazipfile.h \
+    quazip/quazipfileinfo.h \
+    quazip/quazipnewinfo.h \
+    quazip/unzip.h \
+    quazip/zip.h
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+win32: LIBS += -L$$PWD/quazip/zlib/lib/ -lz
+
+INCLUDEPATH += $$PWD/quazip/zlib/include
+DEPENDPATH += $$PWD/quazip/zlib/include
+
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/quazip/zlib/lib/zlib.lib
+else:win32-g++: PRE_TARGETDEPS += $$PWD/quazip/zlib/lib/libz.a
+

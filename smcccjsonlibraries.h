@@ -1,8 +1,10 @@
 #ifndef SMCCCJSONLIBRARIES_H
 #define SMCCCJSONLIBRARIES_H
 
-#include "json/smcccjson.h"
+#include <QJsonObject>
 
+class SMCCCJson;
+class SMCCCJsonNatives;
 class SMCCCJsonLibraries
 {
 public:

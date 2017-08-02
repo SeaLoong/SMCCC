@@ -1,5 +1,7 @@
 #include "smcccnet.h"
 
+SMCCCNet::SMCCCNet(){}
+
 void SMCCCNet::setProxy(const QString &host, const QString &port, const QString &username, const QString &password, int type){
     if(host.isEmpty() || port <= 0)return;
     QNetworkProxy proxy;

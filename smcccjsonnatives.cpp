@@ -1,5 +1,9 @@
 #include "smcccjsonnatives.h"
 
+#include "smcccjson.h"
+
+SMCCCJsonNatives::SMCCCJsonNatives(){}
+
 void SMCCCJsonNatives::process(SMCCCJson *Json){
     Json->isDirExist(Json->NativesDirPath);
     for (QMap<QString,QJsonObject>::ConstIterator it = NativesList.constBegin();it != NativesList.constEnd();++it){
