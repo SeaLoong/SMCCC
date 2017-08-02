@@ -34,3 +34,5 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
+*.jar
+*.json
