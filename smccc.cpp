@@ -124,6 +124,7 @@ QString SMCCC::getAuthError(){
 }
 
 int SMCCC::processLaunchArgs(){
+    //使用_Step标记启动的步骤，在启动失败后再次启动可以加快启动速度
     if(_Step == 0){
         //解析json文件
         int _ret = _Json->process();

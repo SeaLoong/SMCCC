@@ -47,13 +47,13 @@ QString SMCCCAuth::getError(){
 bool SMCCCAuth::auth(){
     if(_username.isEmpty())return false;
     switch (AuthMethod) {
-    case 0:
+    case 0://Offline
         _auth_player_name = _username;
-        _auth_uuid = "00000000000000000000000000000000";
+        _auth_uuid = "00000000000000000000000000000000";//这里就使用固定值了，懒的写生成
         _auth_access_token = "00000000000000000000000000000000";
         _user_type = "legacy";
         return true;
-    case 1:
+    case 1://Yggdrasil
         SMCCCYggdrasil _Yggdrasil;
         _Yggdrasil.username = _username;
         _Yggdrasil.password = _password;

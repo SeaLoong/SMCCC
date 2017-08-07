@@ -196,17 +196,6 @@ public:
     /**
       \return 返回处理启动参数失败的代码
       */
-    /*返回值：
-     * -1:未设置游戏目录/Json文件路径等,
-     * 0:OK,
-     * 1:Download,
-     * 2:JsonFileNotFound,
-     * 3:InheritsFromJsonFileNotFound
-     * 4:LibrariesFileNotFound
-     * 5:JsonError
-     * 6:AuthFaild
-     * 7:UnknownError
-    */
 
 private:
     SMCCCJson *_Json;

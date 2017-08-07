@@ -32,8 +32,15 @@ public:
      * 5:JsonError
     */
 
-    bool AssetsCheck,FileCheck,MergeInheritsFrom;
+    friend class SMCCCJsonAssets;
+    friend class SMCCCJsonDownloads;
+    friend class SMCCCJsonInheritsFrom;
+    friend class SMCCCJsonLibraries;
+    friend class SMCCCJsonNatives;
+    friend class SMCCC;
 
+private:
+    bool AssetsCheck,FileCheck,MergeInheritsFrom;
     QString Arch,OS;
     QString Version,DotMinecraftDirPath,AssetsDirPath,LibrariesDirPath,VersionsDirPath,NativesDirPath,JarFilePath;
 

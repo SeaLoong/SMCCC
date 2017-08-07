@@ -19,7 +19,7 @@ SMCCCJson::SMCCCJson(const QString &version,const QString &dotminecraftdirpath){
     Version = version,DotMinecraftDirPath = dotminecraftdirpath;
 }
 
-int SMCCCJson::process(){//_Step表示启动第几步，减少启动需要下载时再次启动的时间，0~4共5步
+int SMCCCJson::process(){//_Step表示启动第几步，减少启动需要下载时再次启动的时间
     if(DotMinecraftDirPath.isEmpty() || Version.isEmpty())return -1;
     if(AssetsDirPath.isEmpty())AssetsDirPath = DotMinecraftDirPath + "/assets";
     if(LibrariesDirPath.isEmpty())LibrariesDirPath = DotMinecraftDirPath + "/libraries/";
