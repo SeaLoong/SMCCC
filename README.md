@@ -28,7 +28,7 @@
 
 ## 已编译好的库下载
 [GitHub下载源](https://github.com/SeaLoong/SMCCC/raw/master/SMCCC.zip)
-[百度网盘](http://pan.baidu.com/s/1sliAvu9)
+[百度网盘](http://pan.baidu.com/s/1hsmWQby)
 
 
 ## 如何使用
